@@ -57,26 +57,16 @@ const Form = ({ errors, touched, status, updateUser, values }) => {
       .required('Please choose a password'),
   }),
 
-  handleSubmit(values, { setStatus, resetForm }) {
-    axios.post("https://localhost:5000/api/register", {
-        username: values.username,
-        password: values.password
-    })
+  handleSubmit(values, { resetForm }) {
+    axios
+    .post("https://localhost:5000/api/register", values)
     .then(response => {
-      console.log('POST res: ', response.data);
-      setStatus(response.data);
-      })
+      console.log('POST res: ', response.data.message);
       resetForm();
-      axios
-      .get("http://localhost:5000/api/restricted/data")
-      .then(response => {
-      setStatus(response.data);
-      console.log(response.data);
+     
       })
-      .catch(function(error){
-          console.log('this is trouble', error)
-      });
-  }
+      .catch(err => console.log(err))
+    },
 })(Form);
 
  export default FormikUserForm;
@@ -93,7 +83,7 @@ const Form = ({ errors, touched, status, updateUser, values }) => {
  margin: 0 auto;
  height: 500px;
  font-size: 1.5rem;
- margin-top: 10%;
+ margin-top: 5%;
  .user-form{
      display: flex;
      flex-direction: column;
