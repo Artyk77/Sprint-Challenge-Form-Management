@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+
+body{
+  background-color: rgb(65, 199, 99);
+}
+
+.error{
+  margin: 0;
+  color:rgb(58, 224, 94);
+}
